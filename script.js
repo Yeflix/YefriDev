@@ -1,6 +1,8 @@
 // 1. Importaciones directas de Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { time } from "node:console";
+import { message } from "statuses";
 
 // 2. Tu configuración
 const firebaseConfig = {
@@ -153,10 +155,10 @@ window.handleSend = async function(btn) {
   try {
     // 1. Guardar en Firebase Firestore (tu base de datos)
     await addDoc(collection(db, "mensajes"), {
-      nombre: nameEl.value.trim(),
+      name: nameEl.value.trim(),
       email: emailEl.value.trim(),
-      mensaje: msgEl.value.trim(),
-      fecha: serverTimestamp()
+      message: msgEl.value.trim(),
+      time: serverTimestamp()
     });
 
     // 2. Inicializar EmailJS con tu Public Key
