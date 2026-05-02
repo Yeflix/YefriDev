@@ -166,9 +166,9 @@ window.handleSend = async function(btn) {
     // Los nombres de las propiedades (nombre, email, mensaje) 
     // DEBEN coincidir con los que pusiste entre {{ }} en tu plantilla de EmailJS
     await emailjs.send("service_cnmrd5k", "template_c3p1h97", {
-      nombre: nameEl.value.trim(),
+      name: nameEl.value.trim(),
       email: emailEl.value.trim(),
-      mensaje: msgEl.value.trim()
+      message: msgEl.value.trim()
     });
 
     // Éxito: Animación verde
