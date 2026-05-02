@@ -130,8 +130,7 @@ if (counterEl) {
       animNum(counterEl, 3, '+');
     }
   }, { threshold: .5 }).observe(counterEl);
-}
-/* ── CONTACT FORM (Directo a Firebase) ── */
+}/* ── CONTACT FORM (Firebase + EmailJS) ── */
 window.handleSend = async function(btn) {
   const form    = btn.closest('.cont-form');
   const nameEl  = form.querySelector('input[type="text"]');
@@ -152,7 +151,7 @@ window.handleSend = async function(btn) {
   btn.style.background = 'linear-gradient(135deg, var(--blue), var(--purple))';
 
   try {
-    // Guardar directo en la colección "mensajes" de Firestore
+    // 1. Guardar en Firebase Firestore (tu base de datos)
     await addDoc(collection(db, "mensajes"), {
       nombre: nameEl.value.trim(),
       email: emailEl.value.trim(),
@@ -160,6 +159,19 @@ window.handleSend = async function(btn) {
       fecha: serverTimestamp()
     });
 
+    // 2. Inicializar EmailJS con tu Public Key
+    emailjs.init("6k-rsi8D7T4vXo9Xp"); 
+
+    // 3. Enviar el correo notificándote
+    // Los nombres de las propiedades (nombre, email, mensaje) 
+    // DEBEN coincidir con los que pusiste entre {{ }} en tu plantilla de EmailJS
+    await emailjs.send("service_cnmrd5k", "template_c3p1h97", {
+      nombre: nameEl.value.trim(),
+      email: emailEl.value.trim(),
+      mensaje: msgEl.value.trim()
+    });
+
+    // Éxito: Animación verde
     btn.textContent = '✓ Mensaje Enviado';
     btn.style.background = 'linear-gradient(135deg, #00bb55, #008844)';
 
@@ -172,7 +184,7 @@ window.handleSend = async function(btn) {
     }, 3000);
 
   } catch (error) {
-    console.error('Error al guardar en Firebase:', error);
+    console.error('Error en el proceso:', error);
     btn.textContent = '❌ Error al enviar';
     btn.style.background = 'linear-gradient(135deg, #cc0000, #990000)';
     setTimeout(() => {
