@@ -968,8 +968,6 @@ footer {
   .btn-p, .btn-s { width: 100%; max-width: 280px; text-align: center; }
 }
 
-
-
 /* ══════════════════════════════════
    TOUCH DEVICES — disable custom cursor
 ══════════════════════════════════ */
@@ -977,4 +975,3 @@ footer {
   #cDot, #cRing { display: none; }
   body { cursor: auto; }
 }
-
