@@ -121,7 +121,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 7rem 3rem;
+  padding: 1.2rem 3rem;
   background: rgba(4, 4, 10, .88);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
