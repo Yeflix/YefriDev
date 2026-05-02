@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YefriDev — Yefferson Hernandez</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="cDot"><div></div></div>
+<div id="cRing"><div></div></div>
+<div class="scanline"></div>
+<div class="grid-bg"></div>
+<div id="particles"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo">YEFRI<span class="nav-logo-dev">DEV</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" class="nav-item-link">Sobre_mí</a></li>
+    <li><a href="#services" class="nav-item-link">Servicios</a></li>
+    <li><a href="#projects" class="nav-item-link">Proyectos</a></li>
+    <li><a href="#contact" class="nav-item-link">Contacto</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#contact" class="nav-cta">Contratar</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-rings">
+      <div class="hr1"></div>
+      <div class="hr2"></div>
+      <div class="hr3"></div>
+    </div>
+    <div class="hero-tag" id="heroTag"></div>
+    <h1 class="hero-name">
+      <span class="y glitch" data-text="YEFRI">YEFRI</span><span class="d">DEV</span>
+    </h1>
+    <div class="hero-fullname">Yefferson Hernandez &nbsp;·&nbsp; Est. 2022</div>
+    <p class="hero-desc">
+      Físico en formación en la <span class="r">Universidad de los Andes</span> que convierte ecuaciones en código.
+      Especializado en <span class="b">apps móviles</span>, <span class="r">desarrollo web</span>,
+      bots inteligentes y software a medida.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-p"><span>Ver Proyectos</span></a>
+      <a href="#contact" class="btn-s">Contactar</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num" id="cY">0+</div>
+        <div class="stat-label">Años Programando</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1</div>
+        <div class="stat-label">App en Google Play</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Líneas de Código</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <div class="scroll-text">Scroll</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="si">
+    <div class="about-grid">
+      <div class="reveal about-logo" style="display:flex;justify-content:center;">
+        <div class="logo-wrap">
+          <svg class="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#ff2235"/><stop offset="100%" style="stop-color:#cc0018"/>
+              </linearGradient>
+              <linearGradient id="bg" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#6633ff"/><stop offset="100%" style="stop-color:#4d6fff"/>
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="4" result="cb"/>
+                <feMerge><feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <circle cx="80" cy="100" r="52" fill="none" stroke="url(#rg)" stroke-width="22" filter="url(#glow)" opacity=".92"/>
+            <circle cx="120" cy="100" r="52" fill="none" stroke="url(#bg)" stroke-width="22" filter="url(#glow)" opacity=".92"/>
+            <circle cx="80" cy="100" r="30" fill="#04040a" opacity=".7"/>
+            <circle cx="120" cy="100" r="30" fill="#04040a" opacity=".7"/>
+          </svg>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <div class="sh">
+          <span class="stag">// Sobre mí</span>
+          <h2 class="stitle">Código &amp; <em>Física</em></h2>
+          <div class="sline"></div>
+        </div>
+        <p>Soy <strong>Yefferson Hernandez</strong>, conocido digitalmente como <span class="hl">YefriDev</span>. Estudiante de Física en la Universidad de los Andes con una pasión por la programación desde <span class="hb">2022</span>.</p>
+        <p>La física me enseña a descomponer problemas complejos hasta su esencia. Esa mentalidad la aplico en cada línea de código: analizo primero, construyo después.</p>
+        <p>Trabajo de forma autodidacta en <strong>apps móviles</strong>, creación de <span class="hl">bots</span> y proyectos personales.</p>
+        <div class="chips">
+          <div class="chip">Flutter</div><div class="chip">Dart</div>
+          <div class="chip b">React</div><div class="chip b">Node.js</div>
+          <div class="chip">Python</div><div class="chip b">Firebase</div>
+          <div class="chip">Android</div><div class="chip b">JavaScript</div>
+          <div class="chip">HTML / CSS / LaTeX</div><div class="chip b">APIs REST</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="si">
+    <div class="sh reveal">
+      <span class="stag">// Servicios</span>
+      <h2 class="stitle">Qué puedo <em>construir</em> para ti</h2>
+      <div class="sline"></div>
+    </div>
+    <div class="srv-grid">
+      <div class="srv-card reveal">
+        <span class="srv-num">01</span>
+        <span class="srv-icon">🌐</span>
+        <div class="srv-title r">Desarrollo Web</div>
+        <p class="srv-desc">Sitios web y apps web modernas, responsivas y de alto rendimiento. Desde landing pages hasta plataformas completas con backend robusto.</p>
+        <div class="srv-tags">
+          <span class="svt">React</span><span class="svt">HTML5</span><span class="svt">CSS3</span><span class="svt">Node.js</span><span class="svt">JavaScript</span>
+        </div>
+      </div>
+      <div class="srv-card bc reveal">
+        <span class="srv-num">02</span>
+        <span class="srv-icon">📱</span>
+        <div class="srv-title b">Apps Móviles</div>
+        <p class="srv-desc">Aplicaciones nativas y multiplataforma para Android e iOS. Diseño intuitivo, rendimiento fluido y publicación en tiendas de apps.</p>
+        <div class="srv-tags">
+          <span class="svt">Flutter</span><span class="svt">Dart</span><span class="svt">Android</span><span class="svt">Firebase</span>
+        </div>
+      </div>
+      <div class="srv-card reveal">
+        <span class="srv-num">03</span>
+        <span class="srv-icon">🤖</span>
+        <div class="srv-title r">Bots &amp; Automatización</div>
+        <p class="srv-desc">Bots para Telegram, Discord, y más. Automatización de procesos, scraping de datos y pipelines inteligentes.</p>
+        <div class="srv-tags">
+          <span class="svt">Python</span><span class="svt">Telegram API</span>
+        </div>
+      </div>
+      <div class="srv-card bc reveal">
+        <span class="srv-num">04</span>
+        <span class="srv-icon">⚙️</span>
+        <div class="srv-title b">Software a Medida</div>
+        <p class="srv-desc">Sistemas de gestión, herramientas internas, dashboards e integraciones personalizadas para los procesos de tu negocio.</p>
+        <div class="srv-tags">
+          <span class="svt">Python</span><span class="svt">Bases de datos</span><span class="svt">APIs</span><span class="svt">Cloud</span>
+        </div>
+      </div>
+      <div class="srv-card bc reveal">
+        <span class="srv-num">05</span>
+        <span class="srv-icon">💻</span>
+        <div class="srv-title b">Instalación y Consultoría de Dispositivos</div>
+        <p class="srv-desc">Instalación y modificación de sistemas (en especial Windows), programas y reparación de computadores.</p>
+        <div class="srv-tags">
+          <span class="svt">Windows</span><span class="svt">Hardware</span><span class="svt">Soporte Técnico</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="si">
+    <div class="sh reveal">
+      <span class="stag">// Proyectos</span>
+      <h2 class="stitle">Trabajo <em>real</em>, resultados reales</h2>
+      <div class="sline"></div>
+    </div>
+    <div class="proj-grid">
+
+      <!-- Dolargo -->
+      <div class="proj-card reveal">
+        <div class="proj-glow"></div>
+        <div class="proj-head">
+          <div>
+            <div class="proj-cat">App Móvil · Google Play</div>
+            <div class="proj-name">Dolargo</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;">
+            <div class="badge-live">Live</div>
+            <div class="proj-icon">💰</div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-desc">Aplicación Android publicada en Google Play Store. Herramienta de utilidad financiera enfocada en el seguimiento del dólar — construida con Flutter y disponible para usuarios en toda Latinoamérica.</p>
+          <div class="proj-tech">
+            <span class="ptag">Flutter</span><span class="ptag">Dart</span><span class="ptag">Firebase</span><span class="ptag">Android</span><span class="ptag">Google Play</span>
+          </div>
+          <a href="https://play.google.com/store/apps/details?id=com.yefridev.dolargo" target="_blank" class="proj-link">Ver en Play Store →</a>
+        </div>
+      </div>
+
+      <!-- Visión Computacional -->
+      <div class="proj-card reveal">
+        <div class="proj-glow"></div>
+        <div class="proj-head">
+          <div>
+            <div class="proj-cat">Programa · Windows</div>
+            <div class="proj-name">Visión Computacional</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;">
+            <div class="badge-live">Upgrading</div>
+            <div class="proj-icon">💻</div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-desc">Software que permite controlar dispositivos a distancia usando las manos como gestor. Base adaptable a cualquier dispositivo que lo integre.</p>
+          <ul >
+            <li>Expuesto en el Encuentro con la Física, Química, Matemáticas y Biología — 25° aniversario</li>
+            <li>Presentado en el Museo de Ciencia y Tecnología, estado Mérida</li>
+          </ul>
+          <br>
+          <div class="proj-tech">
+            <span class="ptag">Python</span><span class="ptag">OpenCV</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bot Telegram -->
+      <div class="proj-card reveal">
+        <div class="proj-glow"></div>
+        <div class="proj-head">
+          <div>
+            <div class="proj-cat">Bot · Telegram</div>
+            <div class="proj-name">Descarga de Videos Multiplataforma</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;">
+            <div class="badge-live">Live</div>
+            <div class="proj-icon">🤖</div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-desc">Bot de Telegram que permite descargar de forma rápida y sencilla videos de casi cualquier plataforma.</p>
+          <ul >
+            <li>Servidor encendido intermitentemente</li>
+          </ul>
+          <div class="proj-tech">
+            <br>
+            <span class="ptag">Python</span><span class="ptag">Telegram API</span><span class="ptag">Google Cloud</span>
+          </div>
+          <a href="https://t.me/MusicTubeBot_Bot" target="_blank" class="proj-link">Ver en Telegram →</a>
+        </div>
+      </div>
+
+      <!-- Proyectos personales -->
+      <div class="proj-card reveal">
+        <div class="proj-glow"></div>
+        <div class="proj-head">
+          <div>
+            <div class="proj-cat">Desarrollo Web · Navegador</div>
+            <div class="proj-name">Proyectos Personales</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;">
+            <div class="badge-live">Upgrading</div>
+            <div class="proj-icon">🖥️</div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-desc">Proyectos personales realizados a lo largo de mi aprendizaje como programador.</p>
+          <ul class="proj-list">
+            <li>Juego Mokepon</li>
+            <li>Página dedicada a compañeros de clase</li>
+            <li>Calculadora</li>
+            <li>Reestructura de página de inscripción</li>
+            <li>Entre otros…</li>
+          </ul>
+          <div class="proj-tech"><span class="ptag">HTML/CSS/JS</span><span class="ptag">Navegador</span></div>
+        </div>
+      </div>
+
+      <!-- YefriBooks -->
+      <div class="proj-card reveal">
+        <div class="proj-glow" style="background:linear-gradient(90deg,var(--blue),var(--purple));"></div>
+        <div class="proj-head" style="background:linear-gradient(135deg,rgba(77,111,255,.06),rgba(102,51,255,.07));">
+          <div>
+            <div class="proj-cat b">Plataforma · En Desarrollo</div>
+            <div class="proj-name">YefriBooks</div>
+          </div>
+          <div class="proj-icon b">📚</div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-desc">Plataforma de gestión y lectura de libros bajo la marca YefriBooks. Parte del ecosistema YefriDev con foco en educación, productividad y hábitos de lectura.</p>
+          <div class="proj-tech"><span class="ptag">Flutter</span><span class="ptag">Firebase</span><span class="ptag">Web App</span></div>
+        </div>
+      </div>
+
+      <!-- Tu Proyecto -->
+      <div class="proj-card reveal" style="border-style:dashed;opacity:.45;">
+        <div class="proj-head" style="background:transparent;">
+          <div>
+            <div class="proj-cat">Próximamente</div>
+            <div class="proj-name">[ Tu Proyecto ]</div>
+          </div>
+          <div class="proj-icon">🚀</div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-desc">¿Tienes una idea? Podría estar aquí. Hablemos y construyamos algo extraordinario juntos desde cero.</p>
+          <div class="proj-tech"><span class="ptag">Por definir</span></div>
+          <a href="#contact" class="proj-link">Proponer idea →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="si">
+    <div class="sh reveal">
+      <span class="stag">// Contacto</span>
+      <h2 class="stitle">¿Tienes alguna idea <em>en mente o trabajo que se pueda simplificar</em>?</h2>
+      <div class="sline"></div>
+    </div>
+    <div class="cont-wrap">
+      <div class="cont-info reveal">
+        <p>Estoy disponible para proyectos freelance, colaboraciones y consultoría técnica. Si tienes una idea o necesitas una solución tecnológica, hablemos y lo hacemos realidad.</p>
+        <div class="cont-links">
+          <a href="https://github.com/Yeflix" target="_blank" class="cont-link">
+            <span class="cont-link-i">🐙</span><span>github.com/Yeflix</span>
+          </a>
+          <a href="https://t.me/YefriDev" target="_blank" class="cont-link">
+            <span class="cont-link-i">✈️</span><span>t.me/YefriDev</span>
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.yefridev.dolargo" target="_blank" class="cont-link">
+            <span class="cont-link-i">▶️</span><span>Dolargo en Google Play</span>
+          </a>
+        </div>
+      </div>
+      <div class="cont-form reveal">
+        <div class="fg"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+        <div class="fg"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
+        <div class="fg"><label>Mensaje</label><textarea placeholder="Cuéntame sobre tu proyecto..."></textarea></div>
+        <button class="fsub" onclick="handleSend(this)">Enviar Mensaje →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="flogo">YEFRIDEV</div>
+  <div class="fcopy">© 2025 Yefferson Hernandez · Todos los derechos reservados</div>
+  <div class="fmade">Hecho con ❤️ + ☕ en Venezuela 🇻🇪</div>
+</footer>
+
+<script src="script.js"></script>
+
+<script type="module" src="script.js"></script></body>
+</html>
