@@ -1,0 +1,125 @@
+/* ═══════════════════════════════════════════════════
+   TOKENS — todo el color/tipografía vive aquí.
+   El tema se controla con <html data-theme="dark|light">
+   ═══════════════════════════════════════════════════ */
+:root {
+  color-scheme: dark;
+
+  /* Marca (constantes) */
+  --red: #ff2235;
+  --red-2: #cc0018;
+  --blue: #4d6fff;
+  --blue-2: #2244dd;
+  --purple: #6633ff;
+
+  /* Superficies */
+  --bg: #04040a;
+  --bg-2: #080812;
+  --surface: rgba(255, 255, 255, 0.04);
+  --glass: rgba(12, 12, 26, 0.56);
+  --glass-strong: rgba(8, 8, 18, 0.82);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-2: rgba(255, 255, 255, 0.2);
+
+  /* Texto */
+  --text: #eeeeff;
+  --text-2: rgba(238, 238, 255, 0.78);
+  --muted: #9a9cc9;
+
+  /* Acentos legibles como texto (más claros que la marca en oscuro) */
+  --ac-red: #ff5a68;
+  --ac-blue: #8aa0ff;
+  --ok: #00e58a;
+
+  --glow-red: rgba(255, 34, 53, 0.45);
+  --glow-blue: rgba(77, 111, 255, 0.45);
+  --shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.8);
+  --veil: radial-gradient(120% 90% at 50% 40%, transparent 35%, rgba(4, 4, 10, 0.55) 100%);
+  --on-brand: #fff;
+  --aurora:
+    radial-gradient(55% 45% at 88% 6%, rgba(255, 34, 53, 0.1), transparent 70%),
+    radial-gradient(50% 45% at 6% 38%, rgba(77, 111, 255, 0.1), transparent 70%),
+    radial-gradient(45% 40% at 72% 96%, rgba(102, 51, 255, 0.1), transparent 70%);
+
+  /* Tipografía */
+  --f-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  --f-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Escala */
+  --r-card: 18px;
+  --maxw: 1200px;
+  --nav-h: 86px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ═══ MODO CLARO · "Aurora de día" ═══
+   Lienzo periwinkle (no blanco), tarjetas de cristal teñido, y "paneles de tinta"
+   (nav, estadísticas, lista de proyectos) en azul noche para dar contraste y carácter. */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --bg: #c3ccee;
+  --bg-2: #b4bfe6;
+  --surface: rgba(255, 255, 255, 0.3);
+  --glass: rgba(224, 230, 250, 0.84);
+  --glass-strong: rgba(220, 227, 249, 0.93);
+  --border: rgba(28, 38, 118, 0.26);
+  --border-2: rgba(28, 38, 118, 0.5);
+
+  --text: #0a0d28;
+  --text-2: #1b2046;
+  --muted: #3b4272;
+
+  --ac-red: #b10a27;
+  --ac-blue: #1c33c0;
+  --ok: #05663a;
+
+  --glow-red: rgba(224, 36, 60, 0.25);
+  --glow-blue: rgba(48, 80, 232, 0.25);
+  --shadow:
+    0 1px 0 rgba(255, 255, 255, 0.55) inset,
+    0 0 0 1px rgba(28, 38, 118, 0.1),
+    0 24px 46px -22px rgba(24, 32, 110, 0.55),
+    0 6px 14px -8px rgba(24, 32, 110, 0.32);
+  --veil: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(180, 191, 230, 0.55) 100%);
+  --aurora:
+    radial-gradient(55% 45% at 88% 4%, rgba(255, 96, 124, 0.42), transparent 70%),
+    radial-gradient(50% 48% at 4% 40%, rgba(88, 118, 255, 0.4), transparent 70%),
+    radial-gradient(48% 42% at 72% 98%, rgba(150, 100, 255, 0.38), transparent 70%),
+    radial-gradient(40% 35% at 42% 58%, rgba(255, 186, 140, 0.26), transparent 70%);
+}
+
+/* Paneles de tinta: bloques oscuros dentro del tema claro (heredan estas variables) */
+:root[data-theme='light'] :is(.hero__stats, .xp__list),
+:root[data-theme='light'] .hero__stats .stat {
+  --bg: #0f1331;
+  --glass: rgba(15, 19, 52, 0.9);
+  --glass-strong: rgba(13, 17, 46, 0.95);
+  --surface: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.14);
+  --border-2: rgba(255, 255, 255, 0.3);
+  --text: #eef0ff;
+  --text-2: rgba(238, 240, 255, 0.82);
+  --muted: #a9aedb;
+  --ac-red: #ff6c7a;
+  --ac-blue: #9bb0ff;
+  --ok: #00e58a;
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 24px 44px -22px rgba(10, 14, 50, 0.75);
+}
+@media (min-width: 861px) {
+  :root[data-theme='light']:not(.scrolled) .nav::before { background: var(--glass); }
+  :root[data-theme='light'] .nav {
+    --bg: #0f1331;
+    --glass: rgba(15, 19, 52, 0.9);
+    --surface: rgba(255, 255, 255, 0.07);
+    --border: rgba(255, 255, 255, 0.14);
+    --border-2: rgba(255, 255, 255, 0.3);
+    --text: #eef0ff;
+    --text-2: rgba(238, 240, 255, 0.82);
+    --muted: #b3b8e4;
+    --ac-red: #ff6c7a;
+    --ac-blue: #9bb0ff;
+    --shadow: 0 18px 36px -18px rgba(10, 14, 50, 0.7);
+  }
+}

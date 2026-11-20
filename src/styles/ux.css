@@ -1,0 +1,300 @@
+/* ═══════════════════════════════════════════════════
+   UX v3 — mejoras de experiencia, responsive y rendimiento.
+   Se carga al final: solo refina, no cambia animaciones existentes.
+   ═══════════════════════════════════════════════════ */
+
+/* Tipografía fluida y lectura más cómoda */
+.stitle { text-wrap: balance; }
+.hero__desc, .tile--intro p, .contact__info p, .aside__note { text-wrap: pretty; }
+section { padding-block: clamp(4.5rem, 9vw, 7.5rem); padding-inline: clamp(1.1rem, 4vw, 2rem); }
+
+/* Foco visible y accesible en todo lo interactivo */
+:where(a, button, input, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--ac-blue); outline-offset: 3px; border-radius: 10px;
+}
+.rail:focus-visible { outline-offset: -4px; }
+
+/* Toques: sin destello gris ni retardo en móviles */
+a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+
+/* Pantallas grandes: aprovechar mejor el ancho */
+@media (min-width: 1600px) {
+  :root { --maxw: 1360px; }
+  .nav { width: min(1280px, calc(100% - 2rem)); }
+  .hero__content { max-width: 760px; }
+}
+
+/* Hero en escritorio: el bloque de texto respira y las stats no quedan pegadas */
+@media (min-width: 1101px) {
+  .hero { gap: 2.6rem; }
+}
+
+/* Barra de proyectos: filtros a la izquierda y controles a la derecha, alineados */
+.projbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem 1.5rem; flex-wrap: wrap; }
+.projbar .filters { flex: 1 1 0; min-width: 0; }
+.railctl { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+
+/* Menú móvil: CTA dentro del panel (oculto en escritorio) */
+.menu__cta { display: none; }
+
+/* ── Tablet ── */
+@media (max-width: 960px) {
+  .contact { gap: 1.6rem; }
+  .contact__side { order: -1; }
+}
+
+/* ── Móvil ── */
+@media (max-width: 860px) {
+  .menu { padding: calc(var(--nav-h) + 1rem) 1.5rem calc(2rem + env(safe-area-inset-bottom)); gap: 0.4rem; }
+  .menu li { width: min(100%, 340px); }
+  .menu a {
+    display: flex; align-items: center; justify-content: center; min-height: 56px; width: 100%;
+    font-size: 1.05rem; border-radius: 14px;
+  }
+  .menu a::after { left: 50%; transform: translateX(-50%); bottom: 10px; }
+  .menu a:hover::after, .menu a.is-active::after { width: 40%; }
+  .menu__cta { display: block; margin-top: 1rem; }
+  .menu__cta .btn { width: 100%; min-height: 52px; color: #fff; letter-spacing: 3px; }
+  .menu__cta .btn::after { display: none; }
+  .menu li { opacity: 0; transform: translateY(14px); transition: opacity 0.4s var(--ease), transform 0.4s var(--ease); }
+  .menu.open li { opacity: 1; transform: none; }
+  .menu.open li:nth-child(2) { transition-delay: 0.05s; }
+  .menu.open li:nth-child(3) { transition-delay: 0.1s; }
+  .menu.open li:nth-child(4) { transition-delay: 0.15s; }
+  .menu.open li:nth-child(5) { transition-delay: 0.2s; }
+
+  /* Menos blur = mucho menos coste de GPU en móviles */
+  .glass { backdrop-filter: blur(8px) saturate(130%); -webkit-backdrop-filter: blur(8px) saturate(130%); }
+  .nav::before { backdrop-filter: blur(12px) saturate(150%); -webkit-backdrop-filter: blur(12px) saturate(150%); }
+  .grid-bg { background-size: 44px 44px; }
+}
+
+@media (max-width: 640px) {
+  .nav { top: max(10px, env(safe-area-inset-top)); width: calc(100% - 1.2rem); height: 54px; padding-right: 0.45rem; }
+  .nav__right { gap: 0.4rem; }
+  .icon-btn, .burger { width: 42px; height: 42px; }
+
+  #hero { min-height: 100svh; }
+  .hero { gap: 1.6rem; }
+  .hero__name { font-size: clamp(3.6rem, 19vw, 5.4rem); }
+  .hero__btns { gap: 0.7rem; }
+  .hero__btns .btn { min-height: 50px; justify-content: center; }
+
+  /* Filtros en una sola fila deslizable en vez de 3 filas apiladas */
+  .projbar { flex-wrap: nowrap; align-items: center; }
+  .projbar .filters {
+    flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; flex: 1; min-width: 0;
+    margin-inline: -1.1rem 0; padding: 0.3rem 0.4rem 0.3rem 1.1rem; scroll-snap-type: x proximity;
+    mask-image: linear-gradient(90deg, transparent 0, #000 1.1rem, #000 calc(100% - 1.6rem), transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 1.1rem, #000 calc(100% - 1.6rem), transparent);
+  }
+  .projbar .filters::-webkit-scrollbar { display: none; }
+  .projbar .filters > * { flex-shrink: 0; scroll-snap-align: start; white-space: nowrap; }
+  .railbtn { width: 42px; height: 42px; }
+  .rail { padding-top: 1.6rem; padding-bottom: 2.2rem; }
+
+  .bento { gap: 0.9rem; }
+  .tile--fact { grid-column: span 6; }
+  .tile--logo, .tile--logo.glass { min-height: 200px; }
+  .grid-srv { gap: 1rem; }
+
+  /* iOS no hace zoom en campos con ≥16px */
+  .fg input, .fg textarea { font-size: 16px; }
+  .form .btn { align-self: stretch; justify-content: center; min-height: 52px; }
+
+  footer { padding-bottom: calc(2rem + env(safe-area-inset-bottom)); }
+  .flinks a { width: 44px; height: 44px; }
+}
+
+@media (max-width: 380px) {
+  .tile--fact { grid-column: 1 / -1; }
+  .hero__btns .btn { flex-basis: 100%; }
+}
+
+/* Los efectos de hover solo donde hay puntero real (evita "hover pegado" en táctil) */
+@media (hover: none) {
+  .sci__i:hover, .flinks a:hover, .icon-btn:hover, .railbtn:hover:not(:disabled) { transform: none; }
+}
+
+/* Rendimiento: el navegador no pinta lo que no se ve del pie */
+footer { content-visibility: auto; contain-intrinsic-size: auto 140px; }
+
+/* Movimiento reducido: respetar la preferencia del sistema en todo */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* ═══════════════════════════════════════════════════
+   LAYOUT MÓVIL v4 (≤640px) — basado en la réplica:
+   barra superior plana, hero compacto, carrusel plano con tarjetas
+   cortas y "Ver detalles", footer centrado.
+   ═══════════════════════════════════════════════════ */
+.menu__tools, .pmore, .rail-hint { display: none; }
+
+@media (max-width: 640px) {
+  /* Nav: barra plana a todo el ancho, solo logo + hamburguesa */
+  .nav { top: 0; width: 100%; height: calc(60px + env(safe-area-inset-top)); padding: env(safe-area-inset-top) 1.1rem 0 1.25rem; }
+  .nav::before { border-radius: 0; border-width: 0 0 1px; box-shadow: none; }
+  html:not(.scrolled) .nav::before { background: transparent; border-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .nav__right > .icon-btn { display: none; }
+  .burger { background: transparent; border-color: transparent; }
+  .menu__tools { display: flex; justify-content: center; gap: 0.8rem; margin-top: 1rem; }
+  .menu__tools .icon-btn { width: 48px; height: 48px; }
+  .menu li.menu__tools { width: auto; }
+
+  /* Hero: nombre en una línea, etiqueta tipo píldora */
+  #hero { padding-top: calc(60px + env(safe-area-inset-top) + 1.8rem); }
+  .hero__tag {
+    padding: 0.4rem 0.85rem; border-radius: 999px; border: 1px solid var(--border);
+    background: var(--glass); font-size: 0.7rem; letter-spacing: 1px; text-transform: none; margin-bottom: 1rem;
+  }
+  .hero__tag::before { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); opacity: 1; }
+  .hero__name { font-size: clamp(2.8rem, 15vw, 4.2rem); letter-spacing: -0.03em; margin-bottom: 0.8rem; }
+  .hero__name span { display: inline; }
+  .hero__name .d { margin-left: 0; }
+  .hero__full { text-transform: none; letter-spacing: 0.5px; font-size: 0.8rem; margin-bottom: 1.4rem; }
+  .hero__desc { font-size: 1.08rem; margin-bottom: 1.8rem; }
+  .hero__btns .btn { flex: 1 1 0; }
+  .stat__label { text-transform: none; letter-spacing: 0.3px; font-size: 0.72rem; font-family: var(--f-body); }
+  .stat { text-align: center; }
+
+  /* Títulos de sección un poco más contenidos */
+  .stitle { font-size: clamp(1.7rem, 7.4vw, 2.1rem); }
+
+  /* Proyectos: carrusel plano, tarjetas cortas que dejan ver la siguiente */
+  .railctl, .railbar { display: none; }
+  .rail { --card-w: 74vw; --rail-pad: 1.1rem; gap: 0.9rem; perspective: none; padding: 1.2rem 1.1rem 0.8rem; scroll-padding-inline: 1.1rem; align-items: flex-start; }
+  .rail .proj { scroll-snap-align: start; scroll-snap-stop: normal; will-change: auto; }
+  .rail .proj:not(.is-active) .cf { filter: none; }
+  .rail .card__l { border-bottom: 0; }
+  .rail .art { min-height: 92px; }
+  .rail .art-svg { max-width: 150px; }
+  .rail .card__name { font-size: 1.2rem; }
+  .rail .rel { display: none; }
+  .rail .card__l .card__desc { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-size: 0.9rem; }
+  .rail .card__foot { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; padding: 0.9rem 1.3rem 1.1rem; }
+  .rail .card__foot .plink { font-size: 0.72rem; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rail .card__foot { position: relative; z-index: 5; transform: translateZ(40px); }
+  .pmore {
+    display: inline-flex; align-items: center; gap: 0.35rem; position: relative; z-index: 4; flex-shrink: 0;
+    padding: 0.45rem 0; background: none; border: 0; color: var(--text); font: 600 0.82rem var(--f-body); cursor: pointer;
+  }
+  .pmore b { font-size: 1.1rem; line-height: 1; transition: transform 0.3s var(--ease); }
+  .card.is-open .pmore b { transform: rotate(45deg); }
+  .rail .card__r { display: none; border-top: 1px solid var(--border); padding: 1.1rem 1.3rem 1.3rem; }
+  .rail .card.is-open .card__r { display: flex; animation: rise 0.45s var(--ease) both; }
+  .rail-hint { display: block; text-align: center; font-size: 0.8rem; color: var(--muted); margin-top: 0.4rem; }
+
+  /* Contacto: formulario primero, luego disponibilidad */
+  .contact__side { order: 0; }
+
+  /* Footer centrado */
+  footer { flex-direction: column; align-items: center; text-align: center; }
+  .flinks { justify-content: center; }
+}
+
+/* ═══════════════════════════════════════════════════
+   ESCRITORIO v5 — carrusel de proyectos y pequeños ajustes
+   ═══════════════════════════════════════════════════ */
+.raildots { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.55rem; margin: 0.2rem auto 0; padding-inline: 1rem; }
+.raildots button {
+  width: 9px; height: 9px; padding: 0; border-radius: 999px; cursor: pointer;
+  border: 1.5px solid var(--muted); background: transparent;
+  transition: width 0.35s var(--ease), background 0.3s, border-color 0.3s;
+}
+.raildots button:hover { border-color: var(--text); }
+.raildots button.is-active { width: 30px; border-color: transparent; background: linear-gradient(90deg, var(--red), var(--blue)); }
+
+@media (min-width: 761px) {
+  /* Tarjeta central más estrecha: se asoman las vecinas a ambos lados y el coverflow se lee mejor */
+  .rail { --card-w: min(76vw, 980px); padding-block: 1.6rem 2rem; cursor: grab; }
+  .rail.is-drag { cursor: grabbing; }
+  .rail.is-drag .proj { pointer-events: none; }
+  /* Bordes difuminados: las tarjetas entran y salen suavemente */
+  .rail {
+    mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  }
+  /* La tarjeta activa destaca con un borde y sombra de su color */
+  .rail .proj .card { transition: box-shadow 0.4s var(--ease), border-color 0.4s; }
+  .rail .proj.is-active .card {
+    border-color: color-mix(in srgb, var(--accent, var(--red)) 45%, var(--border));
+    box-shadow: var(--shadow), 0 24px 60px -28px color-mix(in srgb, var(--accent, var(--red)) 55%, transparent);
+  }
+  .rail .proj:not(.is-active) .card__r { opacity: 0.55; transition: opacity 0.4s; }
+  .railbar { display: none; }
+
+  /* Filtros más compactos para que quepan en una línea */
+  .projbar .filters { gap: 0.4rem; }
+  .projbar .fchip { padding-inline: 0.85rem; gap: 0.5rem; }
+  .projbar { position: relative; z-index: 3; }
+  .railbtn { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+}
+
+/* Escritorio: pequeños ajustes generales */
+@media (min-width: 1101px) {
+  .aside__note { max-width: 620px; }
+  .sh { margin-bottom: 3rem; }
+  .btn { transition: transform 0.25s var(--ease), box-shadow 0.25s, background 0.25s, color 0.25s; }
+  .btn--primary:hover { box-shadow: 0 14px 34px -14px var(--glow-red); }
+  .contact { gap: 3rem; }
+  .dots { right: 1.4rem; }
+}
+@media (max-width: 640px) { .raildots { display: none; } }
+
+/* ═══════════════════════════════════════════════════
+   v6 — correcciones del carrusel en todos los tamaños
+   ═══════════════════════════════════════════════════ */
+
+/* Escritorio: tarjetas centradas en vertical; detalles alineados arriba para no dejar huecos */
+@media (min-width: 1101px) {
+  .rail { align-items: center; }
+  .card__r { justify-content: flex-start; }
+}
+
+/* Tablet y móvil (≤1100px): tarjeta compacta de una columna + "Ver detalles" */
+@media (max-width: 1100px) {
+  .rail { align-items: flex-start; }
+  .rail .card { grid-template-columns: 1fr; }
+  .card__l { border-right: 0; }
+  .rail .rel { display: none; }
+  .rail .card__l .card__desc { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .rail .card__foot { position: relative; z-index: 5; transform: translateZ(40px); display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
+  .rail .card__foot .plink { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pmore {
+    display: inline-flex; align-items: center; gap: 0.35rem; position: relative; z-index: 4; flex-shrink: 0;
+    padding: 0.5rem 0.9rem; border-radius: 999px; border: 1px solid var(--border); background: var(--surface);
+    color: var(--text); font: 600 0.82rem var(--f-body); cursor: pointer; transition: border-color 0.25s, background 0.25s;
+  }
+  .pmore:hover { border-color: var(--border-2); }
+  .pmore b { font-size: 1.05rem; line-height: 1; transition: transform 0.3s var(--ease); }
+  .card.is-open .pmore b { transform: rotate(45deg); }
+  .rail .card__r { display: none; border-top: 1px solid var(--border); }
+  .rail .card.is-open .card__r { display: flex; animation: rise 0.45s var(--ease) both; }
+  .rail .ptech { grid-template-columns: 1fr; }
+
+  /* Filtros: una fila deslizable, nunca 2 filas */
+  .projbar { flex-wrap: nowrap; }
+  .projbar .filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x proximity;
+    mask-image: linear-gradient(90deg, #000 calc(100% - 2rem), transparent);
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 2rem), transparent); }
+  .projbar .filters::-webkit-scrollbar { display: none; }
+  .projbar .filters > * { flex-shrink: 0; white-space: nowrap; scroll-snap-align: start; }
+}
+
+/* Tablet: se ven ~1,5 tarjetas, coverflow más suave */
+@media (min-width: 641px) and (max-width: 1100px) {
+  .rail { --card-w: min(60vw, 520px); padding-block: 1.4rem 1.8rem; }
+  .rail .art { min-height: 120px; }
+  .rail-hint { display: none; }
+}
+
+/* Móvil: el aviso de deslizar queda pegado a las tarjetas y se oculta al empezar a deslizar */
+@media (max-width: 640px) {
+  .rail { --card-w: 80vw; padding-bottom: 0.4rem; }
+  .rail .card__foot { padding: 0.8rem 1.1rem 1rem; }
+  .rail-hint { margin-top: 0.6rem; transition: opacity 0.4s; animation: hintNudge 2.4s 1.2s ease-in-out 2; }
+  .rail.was-swiped ~ .wrap .rail-hint { opacity: 0; }
+}
+@keyframes hintNudge { 50% { transform: translateX(6px); } }

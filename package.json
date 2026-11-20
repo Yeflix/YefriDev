@@ -1,0 +1,16 @@
+{
+  "name": "yefridev-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Portafolio de YefriDev — Yefferson Hernandez",
+  "scripts": {
+    "build": "esbuild src/main.js src/scene-entry.js --bundle --minify --outdir=dist --format=iife --target=es2020 --legal-comments=none",
+    "dev": "esbuild src/main.js src/scene-entry.js --bundle --outdir=dist --format=iife --sourcemap --serve=5173 --servedir=."
+  },
+  "dependencies": {
+    "three": "0.170.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  }
+}

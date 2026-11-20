@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>YefriDev — Yefferson Hernandez · Desarrollador Full-Stack</title>
+<meta name="description" content="Portafolio de YefriDev (Yefferson Hernandez): estudiante de Física y desarrollador. Apps móviles con Flutter, desarrollo web, bots y software a medida.">
+<meta name="theme-color" content="#04040a">
+<meta name="color-scheme" content="dark light">
+<meta property="og:type" content="website">
+<meta property="og:title" content="YefriDev — Yefferson Hernandez">
+<meta property="og:description" content="Código & Física: apps móviles, web, bots y software a medida.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<!-- Tema antes del primer pintado (evita parpadeo claro/oscuro) -->
+<script>
+  (function () {
+    var d = document.documentElement, t = null;
+    try { t = localStorage.getItem('yd-theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    d.dataset.theme = t;
+    d.classList.add('js');
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fuentes sin bloquear el primer pintado (se aplican al llegar; mientras, fuentes del sistema) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="dist/main.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Yefferson Hernandez","alternateName":"YefriDev","jobTitle":"Desarrollador Full-Stack","sameAs":["https://github.com/Yeflix","https://t.me/YefriDev"]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<!-- Fondo: escena 3D (WebGL) + respaldos -->
+<div class="fallback-bg" aria-hidden="true"></div>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grid-bg" aria-hidden="true"></div>
+<canvas id="scene" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+<div id="progress" aria-hidden="true"></div>
+
+<!-- Navegación -->
+<header class="nav" id="top">
+  <a href="#hero" class="logo" aria-label="YefriDev — inicio">YEFRI<b>DEV</b></a>
+  <nav aria-label="Principal">
+    <ul class="menu" id="navMenu">
+      <li><a href="#about" data-nav>Sobre_mí</a></li>
+      <li><a href="#services" data-nav>Servicios</a></li>
+      <li><a href="#projects" data-nav>Proyectos</a></li>
+      <li><a href="#contact" data-nav>Contacto</a></li>
+    </ul>
+  </nav>
+  <div class="nav__right">
+    <button class="icon-btn" type="button" data-fx-toggle aria-pressed="true" aria-label="Desactivar efectos 3D"><span data-icon="cube"></span></button>
+    <button class="icon-btn" type="button" data-theme-toggle aria-pressed="true" aria-label="Cambiar a modo claro">
+      <span class="i-moon" data-icon="moon"></span><span class="i-sun" data-icon="sun"></span>
+    </button>
+    <a href="#contact" class="btn btn--primary btn--sm nav__cta">Contratar</a>
+    <button class="burger" id="navBurger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="dots" aria-label="Secciones">
+  <a href="#hero" data-dot aria-label="Inicio"><span>Inicio</span></a>
+  <a href="#about" data-dot aria-label="Sobre mí"><span>Sobre mí</span></a>
+  <a href="#services" data-dot aria-label="Servicios"><span>Servicios</span></a>
+  <a href="#projects" data-dot aria-label="Proyectos"><span>Proyectos</span></a>
+  <a href="#contact" data-dot aria-label="Contacto"><span>Contacto</span></a>
+</nav>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section id="hero" data-station>
+    <div class="wrap hero">
+      <div class="hero__content">
+        <div class="hero__tag" id="heroTag" aria-label="Desarrollador Full-Stack">Desarrollador Full-Stack</div>
+        <h1 class="hero__name" aria-label="YefriDev"><span class="y">YEFRI</span><span class="d">DEV</span></h1>
+        <div class="hero__full">Yefferson Hernandez &nbsp;·&nbsp; Est. 2022</div>
+        <p class="hero__desc">
+          Físico en formación en la <span class="r">Universidad de los Andes</span> que convierte ecuaciones en código.
+          Especializado en <span class="b">apps móviles</span>, <span class="r">desarrollo web</span>,
+          bots inteligentes y software a medida.
+        </p>
+        <div class="hero__btns">
+          <a href="#projects" class="btn btn--primary">Ver proyectos</a>
+          <a href="#contact" class="btn btn--ghost">Contactar</a>
+        </div>
+      </div>
+      <div class="hero__stats glass" id="heroStats"></div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true"><i></i><span>Scroll</span></div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section id="about" data-station>
+    <div class="wrap">
+      <div class="sh reveal">
+        <span class="stag">// Sobre mí</span>
+        <h2 class="stitle">Código &amp; <em>Física</em></h2>
+        <div class="sline"></div>
+      </div>
+      <div class="bento">
+        <article class="tile tile--intro glass reveal" style="--i:0">
+          <p>Soy <strong>Yefferson Hernandez</strong>, conocido digitalmente como <span class="hl">YefriDev</span>. Estudiante de Física en la Universidad de los Andes con una pasión por la programación desde <span class="hb">2022</span>.</p>
+          <p>La física me enseña a descomponer problemas complejos hasta su esencia. Esa mentalidad la aplico en cada línea de código: analizo primero, construyo después.</p>
+          <p>Trabajo de forma autodidacta en <strong>apps móviles</strong>, creación de <span class="hl">bots</span> y proyectos personales.</p>
+          <button type="button" class="more-tg" data-more aria-expanded="false">Leer más</button>
+        </article>
+        <div class="tile tile--logo glass reveal" style="--i:1">
+          <div class="logo-3d">
+            <svg viewBox="0 0 200 200" role="img" aria-label="Logo YefriDev">
+              <defs>
+                <linearGradient id="lg-r" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff2235"/><stop offset="100%" stop-color="#cc0018"/></linearGradient>
+                <linearGradient id="lg-b" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#6633ff"/><stop offset="100%" stop-color="#4d6fff"/></linearGradient>
+              </defs>
+              <circle cx="80" cy="100" r="52" fill="none" stroke="url(#lg-r)" stroke-width="22" opacity=".95"/>
+              <circle cx="120" cy="100" r="52" fill="none" stroke="url(#lg-b)" stroke-width="22" opacity=".95"/>
+              <circle class="hole" cx="80" cy="100" r="30" opacity=".7"/>
+              <circle class="hole" cx="120" cy="100" r="30" opacity=".7"/>
+            </svg>
+          </div>
+        </div>
+        <div class="tile tile--fact glass reveal" style="--i:2">
+          <div class="fact__num">2022</div>
+          <div class="fact__label">Año en que empecé a programar, de forma autodidacta</div>
+        </div>
+        <div class="tile tile--fact glass reveal" style="--i:3">
+          <div class="fact__num">ULA</div>
+          <div class="fact__label">Estudiante de Física en la Universidad de los Andes</div>
+        </div>
+        <div class="tile tile--sci glass reveal" style="--i:4">
+          <div class="tile__k">Ciencias básicas en cada proyecto</div>
+          <div class="sci">
+            <span class="sci__i"><span data-icon="atom"></span>Física</span>
+            <span class="sci__i"><span data-icon="flask"></span>Química</span>
+            <span class="sci__i"><span data-icon="sigma"></span>Matemáticas</span>
+            <span class="sci__i"><span data-icon="dna"></span>Biología</span>
+          </div>
+        </div>
+        <div class="tile tile--stack glass reveal" style="--i:5">
+          <div class="tile__k">Stack</div>
+          <div class="chips" style="margin-top:0" aria-label="Tecnologías">
+            <span class="chip">Flutter</span><span class="chip">Dart</span>
+            <span class="chip b">React</span><span class="chip b">Node.js</span>
+            <span class="chip">Python</span><span class="chip b">Firebase</span>
+            <span class="chip">Android</span><span class="chip b">JavaScript</span>
+            <span class="chip">HTML / CSS / LaTeX</span><span class="chip b">APIs REST</span>
+            <span class="chip">PyQt6 / PySide6</span><span class="chip b">MediaPipe · OpenCV</span>
+            <span class="chip">Unity · C#</span><span class="chip b">FastAPI · Skyfield</span>
+          </div>
+          <button type="button" class="more-tg" data-more aria-expanded="false" data-more-label="Ver todo">Ver todo</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="services" data-station>
+    <div class="wrap">
+      <div class="sh reveal">
+        <span class="stag">// Servicios</span>
+        <h2 class="stitle">Qué puedo <em>construir</em> para ti</h2>
+        <div class="sline"></div>
+      </div>
+      <div class="grid-srv" id="servicesGrid"></div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="projects" data-station>
+    <div class="wrap">
+      <div class="sh reveal">
+        <span class="stag">// Proyectos</span>
+        <h2 class="stitle">Trabajo <em>real</em>, resultados reales</h2>
+        <div class="sline"></div>
+      </div>
+      <div class="projhead reveal">
+        <p class="aside__note">Apps, bots, motores de visión, herramientas de escritorio y ciencia. Filtra por tipo y elige un proyecto para ver su ficha completa. <span class="only-d">Cambia entre vista Explorador y Carrusel.</span><span class="only-m">Desliza para recorrer los proyectos.</span></p>
+        <div class="vtoggle" id="viewToggle" role="group" aria-label="Vista de proyectos">
+          <button type="button" data-view="xp" aria-pressed="true">Explorador</button>
+          <button type="button" data-view="rail" aria-pressed="false">Carrusel</button>
+        </div>
+      </div>
+      <div class="projbar reveal">
+        <div class="filters" id="projectFilters" role="group" aria-label="Filtrar proyectos"></div>
+        <div class="railctl" aria-label="Navegar proyectos">
+          <span class="railctl__n" id="railCount" aria-live="polite">01 / 08</span>
+          <button type="button" class="railbtn" id="railPrev" aria-label="Proyecto anterior"><i data-icon="arrow"></i></button>
+          <button type="button" class="railbtn" id="railNext" aria-label="Proyecto siguiente"><i data-icon="arrow"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="wrap"><div class="xp" id="projectsXp"></div></div>
+    <div class="rail" id="projectsGrid" tabindex="0" role="region" aria-label="Lista horizontal de proyectos"></div>
+    <div class="wrap"><div class="railbar" aria-hidden="true"><i id="railBar"></i></div></div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contact" data-station>
+    <div class="wrap">
+      <div class="sh reveal">
+        <span class="stag">// Contacto</span>
+        <h2 class="stitle">¿Tienes una idea <em>en mente o un trabajo que se pueda simplificar</em>?</h2>
+        <div class="sline"></div>
+      </div>
+      <div class="contact">
+        <form class="form glass reveal" id="contactForm" novalidate>
+          <div class="fg"><label for="f-name">Nombre</label><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Tu nombre" required></div>
+          <div class="fg"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="tu@email.com" required></div>
+          <div class="fg"><label for="f-msg">Mensaje</label><textarea id="f-msg" name="message" placeholder="Cuéntame sobre tu proyecto…" required></textarea></div>
+          <button class="btn btn--primary" type="submit">Enviar mensaje →</button>
+          <p class="form__status" data-status role="status" aria-live="polite"></p>
+        </form>
+        <div class="contact__side reveal">
+          <span class="avail">Disponible para proyectos</span>
+          <div class="contact__info glass">
+            <p>Estoy disponible para proyectos freelance, colaboraciones y consultoría técnica. Si tienes una idea o necesitas una solución tecnológica, hablemos y lo hacemos realidad.</p>
+            <div class="contact__links" id="contactLinks"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="fbrand"><div class="flogo">YEFRIDEV</div><div class="flinks" id="footLinks"></div></div>
+  <small>© <span id="year">2026</span> Yefferson Hernandez · Todos los derechos reservados</small>
+  <small>Hecho con ❤️ + ☕ en Venezuela 🇻🇪</small>
+</footer>
+
+<button type="button" class="totop" id="toTop" aria-label="Volver arriba"><i data-icon="arrow"></i></button>
+
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+<script src="dist/main.js" defer></script>
+</body>
+</html>

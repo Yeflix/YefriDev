@@ -1,0 +1,146 @@
+/* ── Escena 3D de fondo ── */
+#scene {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
+  opacity: 0; animation: sceneIn 1.6s 0.2s ease forwards;
+}
+@keyframes sceneIn { to { opacity: var(--scene-o, 1); } }
+
+/* Viñeta: oscurece/aclara bordes para que el texto respire sobre la escena */
+.veil { position: fixed; inset: 0; z-index: 1; pointer-events: none; background: var(--veil); }
+
+/* Aurora: manchas de color de marca (pastel en claro) */
+.aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: var(--aurora); }
+
+/* Respaldo si no hay WebGL o se desactivan los efectos: degradado de marca */
+.fallback-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 80% 10%, color-mix(in srgb, var(--red) 16%, transparent), transparent 70%),
+    radial-gradient(55% 50% at 10% 70%, color-mix(in srgb, var(--blue) 18%, transparent), transparent 70%);
+  opacity: 0; transition: opacity 0.5s;
+}
+html.no-webgl .fallback-bg, html.fx-off .fallback-bg { opacity: 1; }
+html.no-webgl #scene, html.fx-off #scene { display: none; }
+
+/* Retícula sutil */
+.grid-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--blue) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--blue) 7%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 85% 80% at 50% 45%, #000 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 80% at 50% 45%, #000 20%, transparent 100%);
+  opacity: 0.7;
+}
+
+main, footer { position: relative; z-index: 2; }
+
+section { position: relative; padding: 7.5rem 2rem; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; }
+
+/* Barra de progreso */
+#progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 200;
+  background: linear-gradient(90deg, var(--red), var(--purple), var(--blue));
+  transform-origin: left; transform: scaleX(0);
+}
+
+/* Puntos laterales de navegación */
+.dots {
+  position: fixed; right: 1.1rem; top: 50%; transform: translateY(-50%);
+  z-index: 90; display: flex; flex-direction: column; gap: 0.9rem;
+}
+.dots a {
+  position: relative; width: 10px; height: 10px; border-radius: 50%;
+  border: 1.5px solid var(--muted); display: block; transition: all 0.3s;
+}
+.dots a:hover { border-color: var(--text); }
+.dots a.is-active { background: linear-gradient(135deg, var(--red), var(--blue)); border-color: transparent; transform: scale(1.35); }
+.dots a span {
+  position: absolute; right: 1.6rem; top: 50%; transform: translateY(-50%) translateX(6px);
+  font: 0.74rem var(--f-mono); letter-spacing: 2px; text-transform: uppercase;
+  padding: 0.25rem 0.6rem; background: var(--glass-strong); border: 1px solid var(--border);
+  opacity: 0; pointer-events: none; white-space: nowrap; transition: all 0.25s;
+}
+.dots a:hover span, .dots a:focus-visible span { opacity: 1; transform: translateY(-50%); }
+
+/* ── NAV: píldora flotante ── */
+.nav {
+  position: fixed; top: 14px; left: 0; right: 0; margin-inline: auto; z-index: 150;
+  width: min(1120px, calc(100% - 2rem)); height: 58px;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0 0.7rem 0 1.5rem;
+}
+/* Fondo/blur en pseudo-elemento: si .nav tuviera backdrop-filter, el menú móvil
+   (position: fixed) quedaría atrapado dentro de la barra. */
+.nav::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; border-radius: 999px;
+  background: var(--glass); border: 1px solid var(--border); box-shadow: var(--shadow);
+  backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%);
+  transition: background 0.35s, border-color 0.35s;
+}
+html:not(.scrolled) .nav::before { background: color-mix(in srgb, var(--glass) 55%, transparent); }
+.logo {
+  font: 700 1.05rem var(--f-display); letter-spacing: 2px; text-decoration: none; white-space: nowrap;
+  background: linear-gradient(90deg, var(--red), var(--blue));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.logo b { font-weight: 700; -webkit-text-fill-color: var(--text); color: var(--text); }
+
+.menu { display: flex; gap: 2.2rem; }
+.menu a {
+  position: relative; font: 0.74rem var(--f-mono); letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; padding: 0.4rem 0; transition: color 0.25s;
+}
+.menu a::after {
+  content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1px;
+  background: linear-gradient(90deg, var(--red), var(--blue)); transition: width 0.3s var(--ease);
+}
+.menu a:hover, .menu a.is-active { color: var(--text); }
+.menu a:hover::after, .menu a.is-active::after { width: 100%; }
+
+.nav__right { display: flex; align-items: center; gap: 0.7rem; }
+
+.icon-btn {
+  width: 40px; height: 40px; display: grid; place-items: center;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 50%;
+  color: var(--text-2); transition: all 0.25s;
+}
+.icon-btn:hover { border-color: var(--border-2); color: var(--text); transform: translateY(-1px); }
+.icon-btn .i { width: 19px; height: 19px; }
+/* sol/luna según tema */
+[data-theme-toggle] .i-sun, [data-theme-toggle] .i-moon { place-items: center; }
+[data-theme-toggle] .i-sun { display: none; }
+:root[data-theme='light'] [data-theme-toggle] .i-sun { display: grid; }
+:root[data-theme='light'] [data-theme-toggle] .i-moon { display: none; }
+/* 3D activo/inactivo */
+[data-fx-toggle][aria-pressed='false'] { color: var(--muted); opacity: 0.75; }
+[data-fx-toggle][aria-pressed='true'] { color: var(--ac-blue); border-color: color-mix(in srgb, var(--blue) 45%, transparent); }
+
+.burger {
+  display: none; width: 40px; height: 40px; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 50%; z-index: 160;
+}
+.burger span { width: 18px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.35s var(--ease); }
+.burger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.burger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── Footer ── */
+footer {
+  padding: 2.2rem max(1.5rem, calc((100% - var(--maxw)) / 2));
+  border-top: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(10px);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+}
+.flogo {
+  font: 700 0.9rem var(--f-display); letter-spacing: 2px;
+  background: linear-gradient(90deg, var(--red), var(--blue));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+footer small { font: 0.74rem var(--f-mono); color: var(--muted); letter-spacing: 1.5px; }
